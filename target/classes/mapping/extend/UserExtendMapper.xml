@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sugar.mapper.extend.UserExtendMapper">
+  <resultMap id="BaseResultMap" type="com.sugar.model.User">
+    <id column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="WXCHAT" jdbcType="VARCHAR" property="wxchat" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="GENDER" jdbcType="TINYINT" property="gender" />
+    <result column="STAR" jdbcType="TINYINT" property="star" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_ID, NAME, WXCHAT, BIRTHDAY, GENDER, STAR, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByWeChat" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from s_user
+    where WXCHAT = #{weChat}
+  </select>
+</mapper>

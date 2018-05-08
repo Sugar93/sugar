@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sugar.mapper.CarProductMapper" >
+  <resultMap id="BaseResultMap" type="com.sugar.model.CarProduct" >
+    <id column="ORDER_PRODUCT_ID" property="orderProductId" jdbcType="BIGINT" />
+    <result column="CAR_ID" property="carId" jdbcType="BIGINT" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="BIGINT" />
+    <result column="PRODUCT_PRICE" property="productPrice" jdbcType="DOUBLE" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_COUNT" property="productCount" jdbcType="INTEGER" />
+    <result column="CREATE_DT" property="createDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_PRODUCT_ID, CAR_ID, PRODUCT_ID, PRODUCT_PRICE, PRODUCT_NAME, PRODUCT_COUNT, 
+    CREATE_DT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_car_product
+    where ORDER_PRODUCT_ID = #{orderProductId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_car_product
+    where ORDER_PRODUCT_ID = #{orderProductId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sugar.model.CarProduct" >
+    insert into s_car_product (ORDER_PRODUCT_ID, CAR_ID, PRODUCT_ID, 
+      PRODUCT_PRICE, PRODUCT_NAME, PRODUCT_COUNT, 
+      CREATE_DT)
+    values (#{orderProductId,jdbcType=BIGINT}, #{carId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{productPrice,jdbcType=DOUBLE}, #{productName,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, 
+      #{createDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sugar.model.CarProduct" >
+    insert into s_car_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderProductId != null" >
+        ORDER_PRODUCT_ID,
+      </if>
+      <if test="carId != null" >
+        CAR_ID,
+      </if>
+      <if test="productId != null" >
+        PRODUCT_ID,
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productCount != null" >
+        PRODUCT_COUNT,
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderProductId != null" >
+        #{orderProductId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCount != null" >
+        #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sugar.model.CarProduct" >
+    update s_car_product
+    <set >
+      <if test="carId != null" >
+        CAR_ID = #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCount != null" >
+        PRODUCT_COUNT = #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_PRODUCT_ID = #{orderProductId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sugar.model.CarProduct" >
+    update s_car_product
+    set CAR_ID = #{carId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      PRODUCT_PRICE = #{productPrice,jdbcType=DOUBLE},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_COUNT = #{productCount,jdbcType=INTEGER},
+      CREATE_DT = #{createDt,jdbcType=TIMESTAMP}
+    where ORDER_PRODUCT_ID = #{orderProductId,jdbcType=BIGINT}
+  </update>
+</mapper>

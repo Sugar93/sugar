@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sugar.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.sugar.model.Order" >
+    <id column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="ORDER_STATE" property="orderState" jdbcType="TINYINT" />
+    <result column="ORDER_NAME" property="orderName" jdbcType="VARCHAR" />
+    <result column="ORDER_DT" property="orderDt" jdbcType="TIMESTAMP" />
+    <result column="ORDER_PRICE" property="orderPrice" jdbcType="DOUBLE" />
+    <result column="ORDER_CONTACT" property="orderContact" jdbcType="VARCHAR" />
+    <result column="ORDER_ADDR" property="orderAddr" jdbcType="VARCHAR" />
+    <result column="ORDER_PHONE" property="orderPhone" jdbcType="VARCHAR" />
+    <result column="CREATE_DT" property="createDt" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DT" property="updateDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_ID, USER_ID, ORDER_STATE, ORDER_NAME, ORDER_DT, ORDER_PRICE, ORDER_CONTACT, 
+    ORDER_ADDR, ORDER_PHONE, CREATE_DT, UPDATE_DT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sugar.model.Order" >
+    insert into s_order (ORDER_ID, USER_ID, ORDER_STATE, 
+      ORDER_NAME, ORDER_DT, ORDER_PRICE, 
+      ORDER_CONTACT, ORDER_ADDR, ORDER_PHONE, 
+      CREATE_DT, UPDATE_DT)
+    values (#{orderId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{orderState,jdbcType=TINYINT}, 
+      #{orderName,jdbcType=VARCHAR}, #{orderDt,jdbcType=TIMESTAMP}, #{orderPrice,jdbcType=DOUBLE}, 
+      #{orderContact,jdbcType=VARCHAR}, #{orderAddr,jdbcType=VARCHAR}, #{orderPhone,jdbcType=VARCHAR}, 
+      #{createDt,jdbcType=TIMESTAMP}, #{updateDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sugar.model.Order" >
+    insert into s_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="orderState != null" >
+        ORDER_STATE,
+      </if>
+      <if test="orderName != null" >
+        ORDER_NAME,
+      </if>
+      <if test="orderDt != null" >
+        ORDER_DT,
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE,
+      </if>
+      <if test="orderContact != null" >
+        ORDER_CONTACT,
+      </if>
+      <if test="orderAddr != null" >
+        ORDER_ADDR,
+      </if>
+      <if test="orderPhone != null" >
+        ORDER_PHONE,
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT,
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=TINYINT},
+      </if>
+      <if test="orderName != null" >
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDt != null" >
+        #{orderDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderContact != null" >
+        #{orderContact,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null" >
+        #{orderAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sugar.model.Order" >
+    update s_order
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderState != null" >
+        ORDER_STATE = #{orderState,jdbcType=TINYINT},
+      </if>
+      <if test="orderName != null" >
+        ORDER_NAME = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDt != null" >
+        ORDER_DT = #{orderDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE = #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderContact != null" >
+        ORDER_CONTACT = #{orderContact,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddr != null" >
+        ORDER_ADDR = #{orderAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        ORDER_PHONE = #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sugar.model.Order" >
+    update s_order
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      ORDER_STATE = #{orderState,jdbcType=TINYINT},
+      ORDER_NAME = #{orderName,jdbcType=VARCHAR},
+      ORDER_DT = #{orderDt,jdbcType=TIMESTAMP},
+      ORDER_PRICE = #{orderPrice,jdbcType=DOUBLE},
+      ORDER_CONTACT = #{orderContact,jdbcType=VARCHAR},
+      ORDER_ADDR = #{orderAddr,jdbcType=VARCHAR},
+      ORDER_PHONE = #{orderPhone,jdbcType=VARCHAR},
+      CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP}
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+</mapper>

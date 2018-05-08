@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sugar.mapper.ShopCarMapper" >
+  <resultMap id="BaseResultMap" type="com.sugar.model.ShopCar" >
+    <id column="CAR_ID" property="carId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="CAR_PRICE" property="carPrice" jdbcType="DOUBLE" />
+    <result column="CREATE_DT" property="createDt" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DT" property="updateDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CAR_ID, USER_ID, CAR_PRICE, CREATE_DT, UPDATE_DT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_shop_car
+    where CAR_ID = #{carId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_shop_car
+    where CAR_ID = #{carId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sugar.model.ShopCar" >
+    insert into s_shop_car (CAR_ID, USER_ID, CAR_PRICE, 
+      CREATE_DT, UPDATE_DT)
+    values (#{carId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{carPrice,jdbcType=DOUBLE}, 
+      #{createDt,jdbcType=TIMESTAMP}, #{updateDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sugar.model.ShopCar" >
+    insert into s_shop_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        CAR_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="carPrice != null" >
+        CAR_PRICE,
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT,
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="carPrice != null" >
+        #{carPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sugar.model.ShopCar" >
+    update s_shop_car
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="carPrice != null" >
+        CAR_PRICE = #{carPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CAR_ID = #{carId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sugar.model.ShopCar" >
+    update s_shop_car
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      CAR_PRICE = #{carPrice,jdbcType=DOUBLE},
+      CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP}
+    where CAR_ID = #{carId,jdbcType=BIGINT}
+  </update>
+</mapper>

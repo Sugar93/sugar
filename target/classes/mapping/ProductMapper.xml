@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sugar.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.sugar.model.Product" >
+    <id column="PRODUCT_ID" property="productId" jdbcType="BIGINT" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="PRODUCT_PRICE" property="productPrice" jdbcType="DOUBLE" />
+    <result column="PRODUCT_SALES" property="productSales" jdbcType="INTEGER" />
+    <result column="PRODUCT_PIC" property="productPic" jdbcType="VARCHAR" />
+    <result column="PRODUCT_OUTLINE" property="productOutline" jdbcType="VARCHAR" />
+    <result column="STOCK" property="stock" jdbcType="TINYINT" />
+    <result column="CREATE_DT" property="createDt" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DT" property="updateDt" jdbcType="TIMESTAMP" />
+    <result column="DELETED" property="deleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRODUCT_ID, PRODUCT_NAME, PRODUCT_TYPE, PRODUCT_PRICE, PRODUCT_SALES, PRODUCT_PIC, 
+    PRODUCT_OUTLINE, STOCK, CREATE_DT, UPDATE_DT, DELETED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_product
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_product
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sugar.model.Product" >
+    insert into s_product (PRODUCT_ID, PRODUCT_NAME, PRODUCT_TYPE, 
+      PRODUCT_PRICE, PRODUCT_SALES, PRODUCT_PIC, 
+      PRODUCT_OUTLINE, STOCK, CREATE_DT, 
+      UPDATE_DT, DELETED)
+    values (#{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=DOUBLE}, #{productSales,jdbcType=INTEGER}, #{productPic,jdbcType=VARCHAR}, 
+      #{productOutline,jdbcType=VARCHAR}, #{stock,jdbcType=TINYINT}, #{createDt,jdbcType=TIMESTAMP}, 
+      #{updateDt,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sugar.model.Product" >
+    insert into s_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        PRODUCT_ID,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE,
+      </if>
+      <if test="productSales != null" >
+        PRODUCT_SALES,
+      </if>
+      <if test="productPic != null" >
+        PRODUCT_PIC,
+      </if>
+      <if test="productOutline != null" >
+        PRODUCT_OUTLINE,
+      </if>
+      <if test="stock != null" >
+        STOCK,
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT,
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT,
+      </if>
+      <if test="deleted != null" >
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productSales != null" >
+        #{productSales,jdbcType=INTEGER},
+      </if>
+      <if test="productPic != null" >
+        #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productOutline != null" >
+        #{productOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=TINYINT},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sugar.model.Product" >
+    update s_product
+    <set >
+      <if test="productName != null" >
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productSales != null" >
+        PRODUCT_SALES = #{productSales,jdbcType=INTEGER},
+      </if>
+      <if test="productPic != null" >
+        PRODUCT_PIC = #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productOutline != null" >
+        PRODUCT_OUTLINE = #{productOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        STOCK = #{stock,jdbcType=TINYINT},
+      </if>
+      <if test="createDt != null" >
+        CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null" >
+        UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sugar.model.Product" >
+    update s_product
+    set PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      PRODUCT_PRICE = #{productPrice,jdbcType=DOUBLE},
+      PRODUCT_SALES = #{productSales,jdbcType=INTEGER},
+      PRODUCT_PIC = #{productPic,jdbcType=VARCHAR},
+      PRODUCT_OUTLINE = #{productOutline,jdbcType=VARCHAR},
+      STOCK = #{stock,jdbcType=TINYINT},
+      CREATE_DT = #{createDt,jdbcType=TIMESTAMP},
+      UPDATE_DT = #{updateDt,jdbcType=TIMESTAMP},
+      DELETED = #{deleted,jdbcType=TINYINT}
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </update>
+</mapper>

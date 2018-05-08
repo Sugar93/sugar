@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sugar.mapper.ActionHisMapper" >
+  <resultMap id="BaseResultMap" type="com.sugar.model.ActionHis" >
+    <id column="ACTION_ID" property="actionId" jdbcType="BIGINT" />
+    <result column="ACTION_NAME" property="actionName" jdbcType="VARCHAR" />
+    <result column="ACTION_STATE_TIME" property="actionStateTime" jdbcType="TIMESTAMP" />
+    <result column="ACTION_END_TIME" property="actionEndTime" jdbcType="TIMESTAMP" />
+    <result column="ACTION_LOADER_ID" property="actionLoaderId" jdbcType="VARCHAR" />
+    <result column="ACTION_LOADER_NAME" property="actionLoaderName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACTION_ID, ACTION_NAME, ACTION_STATE_TIME, ACTION_END_TIME, ACTION_LOADER_ID, ACTION_LOADER_NAME, 
+    CREATE_TIME, UPDATE_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from S_ACTION_HIS
+    where ACTION_ID = #{actionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from S_ACTION_HIS
+    where ACTION_ID = #{actionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sugar.model.ActionHis" >
+    insert into S_ACTION_HIS (ACTION_ID, ACTION_NAME, ACTION_STATE_TIME, 
+      ACTION_END_TIME, ACTION_LOADER_ID, ACTION_LOADER_NAME, 
+      CREATE_TIME, UPDATE_TIME, STATE
+      )
+    values (#{actionId,jdbcType=BIGINT}, #{actionName,jdbcType=VARCHAR}, #{actionStateTime,jdbcType=TIMESTAMP}, 
+      #{actionEndTime,jdbcType=TIMESTAMP}, #{actionLoaderId,jdbcType=VARCHAR}, #{actionLoaderName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sugar.model.ActionHis" >
+    insert into S_ACTION_HIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="actionId != null" >
+        ACTION_ID,
+      </if>
+      <if test="actionName != null" >
+        ACTION_NAME,
+      </if>
+      <if test="actionStateTime != null" >
+        ACTION_STATE_TIME,
+      </if>
+      <if test="actionEndTime != null" >
+        ACTION_END_TIME,
+      </if>
+      <if test="actionLoaderId != null" >
+        ACTION_LOADER_ID,
+      </if>
+      <if test="actionLoaderName != null" >
+        ACTION_LOADER_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="actionId != null" >
+        #{actionId,jdbcType=BIGINT},
+      </if>
+      <if test="actionName != null" >
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionStateTime != null" >
+        #{actionStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionEndTime != null" >
+        #{actionEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionLoaderId != null" >
+        #{actionLoaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionLoaderName != null" >
+        #{actionLoaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sugar.model.ActionHis" >
+    update S_ACTION_HIS
+    <set >
+      <if test="actionName != null" >
+        ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionStateTime != null" >
+        ACTION_STATE_TIME = #{actionStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionEndTime != null" >
+        ACTION_END_TIME = #{actionEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionLoaderId != null" >
+        ACTION_LOADER_ID = #{actionLoaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionLoaderName != null" >
+        ACTION_LOADER_NAME = #{actionLoaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ACTION_ID = #{actionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sugar.model.ActionHis" >
+    update S_ACTION_HIS
+    set ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+      ACTION_STATE_TIME = #{actionStateTime,jdbcType=TIMESTAMP},
+      ACTION_END_TIME = #{actionEndTime,jdbcType=TIMESTAMP},
+      ACTION_LOADER_ID = #{actionLoaderId,jdbcType=VARCHAR},
+      ACTION_LOADER_NAME = #{actionLoaderName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=TINYINT}
+    where ACTION_ID = #{actionId,jdbcType=BIGINT}
+  </update>
+</mapper>
