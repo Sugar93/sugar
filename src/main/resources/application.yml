@@ -27,10 +27,10 @@ spring:
       host: 127.0.0.1
       port: 6379
       timeout: 0
-      pool:
-        max-idle: 300
-        max-active: 8
-        max-wait: -1
+      pool.max-idle: 300
+      pool.min-idle: 1
+      pool.max-active: 8
+      pool.max-wait: -1
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
   type-aliases-package: com.winter.model
