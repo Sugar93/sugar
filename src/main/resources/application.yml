@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
     datasource:
         name: sugar
@@ -23,6 +22,15 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      timeout: 0
+      pool:
+        max-idle: 300
+        max-active: 8
+        max-wait: -1
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
   type-aliases-package: com.winter.model
