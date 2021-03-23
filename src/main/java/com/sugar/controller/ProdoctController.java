@@ -30,7 +30,9 @@ public class ProdoctController {
         Response<Product> response = new Response<>(ResponseConstants.SUCCESS_TRUE,ResponseConstants.RESULT_CODE_SUCCESS,ResponseConstants.RESULT_MESSAGE_SUCCESS);
         log.info("入参====="+id);
         try {
-            Product product = productMapper.selectByPrimaryKey(id);
+//            Product product = productMapper.selectByPrimaryKey(id);
+            Product product = new Product();
+            product.setProductName("虚拟产品");
             response.setResult(product);
         }catch (Exception e){
             response = new Response<>(ResponseConstants.SUCCESS_FALSE,ResponseConstants.RESULT_CODE_FAIL,ResponseConstants.RESULT_MESSAGE_FAIL);

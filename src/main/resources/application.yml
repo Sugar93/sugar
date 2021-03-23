@@ -1,36 +1,46 @@
 server:
-  port: 8080
+  port: 8082
 spring:
-    datasource:
-        name: sugar
-        url: jdbc:mysql://127.0.0.1:3306/sugar
-        username: root
-        password: 123456
-        # 使用druid数据源
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
-    redis:
-      database: 0
-      host: 127.0.0.1
-      port: 6379
-      timeout: 0
-      pool.max-idle: 300
-      pool.min-idle: 1
-      pool.max-active: 8
-      pool.max-wait: -1
+  application:
+    name: sugar
+#  datasource:
+#    name: sugar
+#    url: jdbc:mysql://127.0.0.1:3306/sugar
+#    username: root
+#    password: 123456
+#    # 使用druid数据源
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    filters: stat
+#    maxActive: 20
+#    initialSize: 1
+#    maxWait: 60000
+#    minIdle: 1
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxOpenPreparedStatements: 20
+#  redis:
+#      database: 0
+#      host: 127.0.0.1
+#      port: 6379
+#      timeout: 0
+#      pool.max-idle: 300
+#      pool.min-idle: 1
+#      pool.max-active: 8
+#      pool.max-wait: -1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 30
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
   type-aliases-package: com.winter.model
@@ -41,3 +51,12 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+#zk配置
+#zns:
+#  server:
+#    zk:
+#      root: /zns
+#      addr: 127.0.0.1:2181
+#      switch: true
+#  network:
+#    port: 8888
